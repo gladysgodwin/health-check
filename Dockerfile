@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ./my-nest-app/package*.json ./
 
 # Install dependencies
-RUN npm install -g npm@latest
+#RUN npm install -g npm@latest
 RUN npm install
 
 # Copy the rest of the application code

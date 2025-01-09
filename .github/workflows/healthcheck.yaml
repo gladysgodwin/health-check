@@ -30,7 +30,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: eu-west-2
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -43,9 +43,9 @@ jobs:
       - name: Build and tag image
         id: build-image
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: healthcheck-service
+          ECR_REGISTRY: 058264180972.dkr.ecr.eu-west-2.amazonaws.com
+          ECR_REPOSITORY: healthcheck_prod
           IMAGE_TAG: ${{ steps.set_version.outputs.VERSION }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t 058264180972.dkr.ecr.eu-west-2.amazonaws.com/healthcheck_prod:$IMAGE_TAG .
+          docker push 058264180972.dkr.ecr.eu-west-2.amazonaws.com/healthcheck_prod:$IMAGE_TAG
